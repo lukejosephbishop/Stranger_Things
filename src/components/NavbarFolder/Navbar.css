@@ -1,0 +1,28 @@
+.NavbarMenu {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background: #0F2027;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2C5364, #203A43, #0F2027);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-size: 2rem;
+    display: flex;
+    flex-direction: right;
+    align-items: center;
+   justify-content: space-between;
+    color: rgb(179, 176, 176);
+  padding-right: 2rem;
+ 
+}
+
+.logo {
+    display: flex;
+    margin-left: 2rem;
+    justify-self: flex-start;
+}
+
+.menu-icon {
+    
+    justify-items: flex-end;
+}
