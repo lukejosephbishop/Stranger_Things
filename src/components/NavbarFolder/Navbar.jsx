@@ -13,8 +13,12 @@ const Navbar = () => {
         <h3>
           <i className="fas fa-space-shuttle"></i>
         </h3>
+        <h3>
+        <i class="fas fa-couch"></i>
+        </h3>
         <h1 className="navbar-logo">Stranger's Things</h1>
       </nav>
+      <div className="menu-icon">
       <Link className="nav-links" to="/home">
         Home
       </Link>
@@ -27,6 +31,7 @@ const Navbar = () => {
       <Link className="nav-links" to="/login">
         Login
       </Link>
+      </div>
     </nav>
   );
 

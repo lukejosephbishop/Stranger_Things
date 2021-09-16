@@ -1,3 +1,7 @@
-* {
-    
+body { background-color: #d2ecfa;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.post { background-color: rgb(244, 235, 187);
+
 }
