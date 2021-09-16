@@ -15,6 +15,13 @@
   padding-right: 2rem;
  
 }
+.fa-blender{
+    margin-right: 1rem;
+}
+
+.fa-space-shuttle{
+    margin-right: 1rem;
+}
 
 .logo {
     display: flex;
@@ -23,6 +30,14 @@
 }
 
 .menu-icon {
-    
     justify-items: flex-end;
+}
+
+.nav-links {
+    margin-left: 1.5rem;
+    color: rgb(45, 9, 104)
+}
+
+.nav-links:hover {
+border: 1px solid black
 }
