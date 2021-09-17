@@ -23,15 +23,20 @@ export default function Posts(props) {
   }, []);
 
   return (
-    <div>
+    <div >
 
       {defaultPosts.map((post, indx) => {
+        const {title, description, price, location, author} = post
+        const {username} = author
         return (
           <div className="post" key={`post-${indx}`}>
-            <h1>{post.title}</h1>
-            <p>{post.description}</p>
-            <p>{post.price}</p>
-            <p>{post.location}</p>
+            <div className="post-header">
+            <h1>{title}</h1>
+            <h2 className="username">{username}</h2>
+            </div>
+            <p>{description}</p>
+            <p className="price">{price}</p>
+            <p>{location}</p>
           </div>
         );
       })}
