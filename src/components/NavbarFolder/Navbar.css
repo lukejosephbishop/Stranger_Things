@@ -13,15 +13,21 @@
    justify-content: space-between;
     color: rgb(179, 176, 176);
   padding-right: 2rem;
- 
+  max-width: 100%;
+  
 }
 .NavbarMenu:hover {
-    cursor:pointer;
+    cursor: default;
 }
 .navbar-logo {
 text-decoration: none;
-color:rgb(200, 117, 7)
+color:rgb(200, 117, 7);
 }
+
+.navbar-logo h1:hover {
+    cursor: pointer;
+}
+
 
 .fa-blender{
     margin-right: 1rem;
