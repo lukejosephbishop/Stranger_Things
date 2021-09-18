@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { loginUser } from "../api";
 
 export default function Login() {
-  const username = "superman27";
-  const password = "krypt0n0rbust";
+  const [userName, setUserName] = useState("")
+  const [password, setPassword] = useState("")
+
+  
   useEffect(() => {
-    loginUser(username, password);
+    loginUser();
   }, []);
 
   return (
@@ -37,15 +39,6 @@ export default function Login() {
           <input type="checkbox" name="remember" /> Remember me
         </label>
         <a href="./Register.jsx">Have you created an Account? Sign up here.</a>
-      </div>
-
-      <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
-        <button type="button" className="cancelbtn">
-          Cancel
-        </button>
-        <span className="psw">
-          Forgot <a href="#">password?</a>
-        </span>
       </div>
     </form>
   );

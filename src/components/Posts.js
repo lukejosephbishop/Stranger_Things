@@ -34,9 +34,11 @@ export default function Posts(props) {
             <h1>{title}</h1>
             <h2 className="username">{username}</h2>
             </div>
+            <div className="post-content">
             <p>{description}</p>
             <p className="price">{price}</p>
             <p>{location}</p>
+            </div>
           </div>
         );
       })}
