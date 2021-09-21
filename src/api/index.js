@@ -3,6 +3,8 @@ import {storeToken, getToken, clearCurrentUser} from "../auth"
 
 const BASE = "https://strangers-things.herokuapp.com";
 const COHORT = "2106-CPU-RM-WEB-PT"
+
+
 export async function loginUser(username, password) {
   try {
     const data = await fetch(
@@ -10,20 +12,19 @@ export async function loginUser(username, password) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer TOKEN_STRING_HERE",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           user: {
-            username: username,
-            password: password,
-          },
-        }),
-      }
-    ).then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+            username,
+            password,
+          }
+        })
+      }).then(response => response.json())
+        .then(result => {
+          return result.data
+        })
+        return data
   } catch (error) {
     console.log( error);
   }
@@ -36,20 +37,18 @@ export async function registerUser(username, password) {
       {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           user: {
-            username: username,
-            password: password,
-          },
-        }),
-      }
-    )
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-      });
+            username, password
+          }
+        })
+      }).then(response => response.json())
+        .then(result => {
+          return result.data
+        })
+        return data
   } catch (error) {
     throw error;
   }

@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <div id="App">
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
       <Switch>
         <Route path="/posts">
           <Posts
@@ -23,17 +23,17 @@ const App = () => {
             setDefaultPosts={setDefaultPosts}
           />
         </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
         <Route path="/profile">
           <Profile />
         </Route>
         <Route path="/login">
-          <Login setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
+          <Login isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/register">
           <Register setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
+        </Route>
+        <Route path="/">
+          {isLoggedIn?<Home />:<Login setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn}/>}
         </Route>
       </Switch>
     </div>

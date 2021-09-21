@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import { MenuItems } from "./MenuItems";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Redirect, Link, useHistory } from "react-router-dom";
+import { clearCurrentUser } from "../../auth";
 
-const Navbar = () => {
+
+const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
+
+  const history = useHistory()
+
   return (
     <nav className="NavbarMenu">
       <nav className="logo">
@@ -16,23 +21,30 @@ const Navbar = () => {
         <h3>
           <i className="fas fa-couch"></i>
         </h3>
-        <Link className="navbar-logo" to="/home">
+        <Link className="navbar-logo" to="/">
           <h1>Stranger's Things</h1>
         </Link>
       </nav>
       <div className="menu-icon">
-        <Link className="nav-links" to="/home">
+        <Link className="nav-links" to="/">
           Home
         </Link>
         <Link className="nav-links" to="/posts">
           Posts
         </Link>
-        <Link className="nav-links" to="/profile">
+        {isLoggedIn ?<Link className="nav-links" to="/profile">
           Profile
-        </Link>
-        <Link className="nav-links" to="/login">
-          Login
-        </Link>
+        </Link>:null}
+        {isLoggedIn?<Link className="nav-links" to="/login" onClick={(event)=>{
+          event.preventDefault
+          clearCurrentUser();
+          setIsLoggedIn(false);
+          
+        }}>
+          {isLoggedIn?"LogOut":"LogIn"}
+        </Link>: <Link className="nav-links" to="/login">
+          LogIn
+        </Link>}
       </div>
     </nav>
   );

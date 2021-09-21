@@ -21,7 +21,7 @@ export default function Register({setIsLoading, setIsLoggedIn}) {
         try {
           const results = await registerUser(userName, password);
           console.log(results);
-          // storeToken(results.data.token);
+          storeToken(results.data.token);
           setIsLoggedIn(true);
           setUserName("");
           setPassword("");

@@ -70,6 +70,10 @@ body {
   color: rgb(200, 117, 7);
 }
 
+.logout-button {
+  width: 3rem;
+}
+
 input:hover {
   cursor: pointer;
 }
