@@ -33,7 +33,7 @@ const App = () => {
           <Register setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/">
-          {isLoggedIn?<Home />:<Login setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn}/>}
+          <Home />
         </Route>
       </Switch>
     </div>
