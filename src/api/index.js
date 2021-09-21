@@ -5,7 +5,7 @@ const BASE = "https://strangers-things.herokuapp.com";
 const COHORT = "2106-CPU-RM-WEB-PT"
 export async function loginUser(username, password) {
   try {
-    const { data } = await fetch(
+    const data = await fetch(
       `${BASE}/api/${COHORT}/users/login`,
       {
         method: "POST",
@@ -31,7 +31,7 @@ export async function loginUser(username, password) {
 
 export async function registerUser(username, password) {
   try {
-    const { data } = await fetch(
+    const data = await fetch(
       `${BASE}/api/${COHORT}/users/register`,
       {
         method: "POST",

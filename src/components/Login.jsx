@@ -20,7 +20,7 @@ export default function Login({ setIsLoading, setIsLoggedIn }) {
         try {
           const results = await loginUser(userName, password);
           console.log(results);
-          // storeToken(results.data.token);
+          storeToken(results.data.token);
           setIsLoggedIn(true);
           setUserName("");
           setPassword("");

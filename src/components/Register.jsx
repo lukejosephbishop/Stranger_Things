@@ -1,27 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 
 import { registerUser } from "../api";
 
-export default function Register() {
-  return (
-    <form className="login-form" className="login-form"
-    onSubmit={async (event) => {
-      event.preventDefault();
-      setIsLoading(true);
+export default function Register({setIsLoading, setIsLoggedIn}) {
 
-      try {
-        const results = await loginUser(userName, password);
-        console.log(results);
-        // storeToken(results.data.token);
-        setIsLoggedIn(true);
-        setUserName("");
-        setPassword("");
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }}>
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  useEffect(() => {
+   registerUser();
+  }, []);
+
+  return (
+    <form
+      className="login-form"
+      className="login-form"
+      onSubmit={async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+
+        try {
+          const results = await registerUser(userName, password);
+          console.log(results);
+          // storeToken(results.data.token);
+          setIsLoggedIn(true);
+          setUserName("");
+          setPassword("");
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setIsLoading(false);
+        }
+      }}
+    >
       <div className="container">
         <h1 className="login-title">Register</h1>
         <div className="imgcontainer">
@@ -38,6 +48,10 @@ export default function Register() {
             name=""
             id="email"
             required
+            value={userName}
+            onChange={(event) => {
+              setUserName(event.target.value);
+            }}
           />
 
           <label htmlFor="psw">
@@ -60,6 +74,10 @@ export default function Register() {
             name="psw-repeat"
             id="psw-repeat"
             required
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
           />
         </>
 
@@ -68,7 +86,7 @@ export default function Register() {
         </button>
       </div>
 
-      <div class="container signin">
+      <div className="container signin">
         <p>
           Already have an account? <a href="/login">Sign in</a>.
         </p>
