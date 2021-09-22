@@ -126,6 +126,16 @@ span.psw {
   padding-top: 16px;
 }
 
+.home-page-text {
+    text-align: center;
+    padding-top: 5px;
+    font-size: 18px;
+}
+
+.home-gif {
+    width: 50%;
+}
+
 /* Change styles for span and cancel button on extra small screens */
 
 @media screen and (max-width: 300px) {
