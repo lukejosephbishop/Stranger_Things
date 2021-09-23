@@ -10,23 +10,19 @@ function NewPost({ setIsLoggedIn, isLoggedIn, setIsLoading }) {
   const [price, setPrice]=useState("")
   const [location, setLocation]=useState("")
   const [willDeliver, setWillDeliver]= useState(false)
+  const [isAuthor, setIsAuthor] = useState(true)
 
   const history = useHistory()
 
-  useEffect(() => {
-    const TOKEN = getToken();
-    if (TOKEN) {
-      setIsLoggedIn(true);
-    }
-  }, [])
+  
  
   return (
     <form className="newpost" onSubmit={async (event) => {
       event.preventDefault();
       setIsLoading(true);
-
+setIsAuthor(true)
       try {
-        const results = await createNewPost(title, description, price, location, willDeliver);
+        const results = await createNewPost(title, description, price, location, willDeliver, isAuthor);
         console.log(results);
         setTitle("");
         setDescription("");

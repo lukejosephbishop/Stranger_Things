@@ -19,32 +19,30 @@ export default function Profile(props) {
     }
   }, []);
 
+
+
   return (
     <div className="post-page">
-      { messages.map((post, indx) => {
+      <h1>Inbox</h1>
+      { messages.map((message, indx) => {
+        const {content, username, fromUser, post} = message
         
-        const { title, description, price, location, author, isAuthor } = post;
-        const { username } = author;
         return (
-          <div className="post" key={`post-${indx}`}>
+          
+          <div className="post" key={`message-${indx}`}>
             <div className="post-header">
-              <h1>{title}</h1>
-              <h2 className="username">{username}</h2>
+              <h1>{post.title}</h1>
+              <h2 className="username">{fromUser.username}</h2>
             </div>
             <div className="post-content">
-              <p>{description}</p>
-              <p className="price">{price}</p>
-              <p>{location}</p>
+              <p>{content}</p>
+              
             </div>
-            {(isLoggedIn === true) & (isAuthor === true) ? (
-              <>
-                <button className="edit-button">Edit</button>
-                <button className="delete-button">Delete</button>
-              </>
-            ) : null}
           </div>
+          
         );
       })}
+      <h1>Sent</h1>
     </div>
   );
 }

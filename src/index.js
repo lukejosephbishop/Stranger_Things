@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Home, Login, Profile, Posts, Navbar, Register, NewPost, EditPost } from "./components";
+import {
+  Home,
+  Login,
+  Profile,
+  Posts,
+  Navbar,
+  Register,
+  NewPost,
+  EditPost,
+} from "./components";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,19 +17,21 @@ import {
   //Redirect,
 } from "react-router-dom";
 
-import {getToken} from "./auth"
+import { getToken } from "./auth";
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPosts, setDefaultPosts] = useState([]);
+  
 
   useEffect(() => {
     const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);
     }
-  }, [])
+  }, []);
 
   return (
     <div id="App">
@@ -35,13 +46,17 @@ const App = () => {
           />
         </Route>
         <Route path="/profile">
-          <Profile defaultPosts={defaultPosts} isLoggedIn={isLoggedIn}
+          <Profile
+            defaultPosts={defaultPosts}
+            isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
-            setDefaultPosts={setDefaultPosts}/>
+            setDefaultPosts={setDefaultPosts}
+          />
         </Route>
         <Route path="/login">
           <Login
+            
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
@@ -51,14 +66,21 @@ const App = () => {
           <Register setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
         </Route>
         <Route path="/newpost">
-          <NewPost isLoggedIn={isLoggedIn}
+          <NewPost
+            isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
-            setIsLoggedIn={setIsLoggedIn}/>
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </Route>
-        <Route path ="/editpost">
-          <EditPost isLoggedIn={isLoggedIn}
+        <Route path="/editpost">
+          <EditPost
+           
+            setDefaultPosts={setDefaultPosts}
+            defaultPosts={defaultPosts}
+            isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
-            setIsLoggedIn={setIsLoggedIn}/>
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </Route>
         <Route path="/">
           <Home />
