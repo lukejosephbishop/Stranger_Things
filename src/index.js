@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { Home, Login, Profile, Posts, Navbar, Register } from "./components";
+import { Home, Login, Profile, Posts, Navbar, Register, NewPost } from "./components";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,22 +15,31 @@ const App = () => {
 
   return (
     <div id="App">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Switch>
         <Route path="/posts">
           <Posts
             defaultPosts={defaultPosts}
             setDefaultPosts={setDefaultPosts}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
           />
         </Route>
         <Route path="/profile">
           <Profile />
         </Route>
         <Route path="/login">
-          <Login isLoggedIn={isLoggedIn} setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
+          <Login
+            isLoggedIn={isLoggedIn}
+            setIsLoading={setIsLoading}
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </Route>
         <Route path="/register">
           <Register setIsLoading={setIsLoading} setIsLoggedIn={setIsLoggedIn} />
+        </Route>
+        <Route path="/newpost">
+          <NewPost />
         </Route>
         <Route path="/">
           <Home />

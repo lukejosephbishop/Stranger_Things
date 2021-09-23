@@ -1,13 +1,13 @@
 import React from "react"
 
-const Home = ({user}) => {
+const Home = () => {
 
     return (<div className='home-page-text'>
         <h2>Welcome to Stranger's Things!</h2>
-        {user.username ? 
+        {/* {user.username ? 
         <div>Currently logged in as <b>{user.username}</b></div>
         : 
-        <div>Please login above.</div>}
+        <div>Please login above.</div>} */}
         <img className='home-gif' src="strangersthings.gif" />
     </div>)
 }

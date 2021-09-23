@@ -78,7 +78,7 @@ export default function Login({ isLoggedIn, setIsLoading, setIsLoggedIn }) {
             }}
           />
           
-            <button type="submit">Login</button>
+            <button className ="submit-button" type="submit">Login</button>
           
           <label className="checkbox">
             <input type="checkbox" name="remember" /> Remember me

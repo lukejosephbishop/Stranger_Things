@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import { MenuItems } from "./MenuItems";
+
 import "./Navbar.css";
 import { Redirect, Link, useHistory } from "react-router-dom";
 import { clearCurrentUser } from "../../auth";
 
-
-const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
-
-  const history = useHistory()
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
+  const history = useHistory();
 
   return (
     <nav className="NavbarMenu">
@@ -32,49 +30,36 @@ const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
         <Link className="nav-links" to="/posts">
           Posts
         </Link>
-        {isLoggedIn ?<Link className="nav-links" to="/profile">
-          Profile
-        </Link>:null}
-        {isLoggedIn?<Link className="nav-links" to="/login" onClick={(event)=>{
-          event.preventDefault
-          clearCurrentUser();
-          setIsLoggedIn(false);
-          
-        }}>
-          {isLoggedIn?"LogOut":"LogIn"}
-        </Link>: <Link className="nav-links" to="/login">
-          LogIn
-        </Link>}
+        {isLoggedIn ? (
+          <Link className="nav-links" to="/profile">
+            Profile
+          </Link>
+        ) : null}
+        {isLoggedIn ? (
+          <Link
+            className="nav-links"
+            to="/login"
+            onClick={(event) => {
+              const course = confirm("Are you sure you want to log out?");
+              
+              if (course === true) {
+                event.preventDefault;
+                clearCurrentUser();
+                setIsLoggedIn(false);
+              } 
+            }}
+          >
+            {isLoggedIn ? "LogOut" : "LogIn"}
+          </Link>
+        ) : (
+          <Link className="nav-links" to="/login">
+            LogIn
+          </Link>
+        )}
       </div>
     </nav>
   );
 
-  // return (
-  //       <nav className="NavbarMenu">
-  //         <nav className="logo">
-  //           <h3>
-  //             <i className="fas fa-blender"></i>
-  //           </h3>
-  //           <h3>
-  //             <i className="fas fa-space-shuttle"></i>
-  //           </h3>
-  //           <h1 className="navbar-logo">Stranger's Things</h1>
-  //         </nav>
-  //         <div className="menu-icon">
-  //           <ul >
-  //             {MenuItems.map((item, indx) => {
-  //               return (
-  //                 <>
-  //                   <a className={item.cName} href={item.url}>
-  //                     {item.title}
-  //                   </a>
-  //                 </>
-  //               );
-  //             })}
-  //           </ul>
-  //         </div>
-  //       </nav>
-  //     );
 };
 
 export default Navbar;
