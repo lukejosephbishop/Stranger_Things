@@ -8,10 +8,19 @@ import {
   //Redirect,
 } from "react-router-dom";
 
+import {getToken} from "./auth"
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPosts, setDefaultPosts] = useState([]);
+
+  useEffect(() => {
+    const TOKEN = getToken();
+    if (TOKEN) {
+      setIsLoggedIn(true);
+    }
+  }, [])
 
   return (
     <div id="App">
