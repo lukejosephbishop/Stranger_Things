@@ -35,7 +35,11 @@ export default function Posts(props) {
             
           }}> Create Post
           </button>
-          <button className="edit-mypost"> Edit my Posts</button>
+          <button className="edit-mypost" onClick={(event) => {
+            event.preventDefault()
+           location.href="/editpost"
+            
+          }}> Edit my Posts</button>
         </div>
       ) : null}
       {defaultPosts.map((post, indx) => {
