@@ -1,16 +1,49 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { createNewPost } from "../api"
+import { storeToken, getToken } from "../auth";
+import { useHistory } from "react-router-dom";
 
-function NewPost() {
+function NewPost({ setIsLoggedIn, isLoggedIn, setIsLoading }) {
  
   const [title, setTitle]=useState("")
   const [description, setDescription]=useState("")
   const [price, setPrice]=useState("")
   const [location, setLocation]=useState("")
+  const [willDeliver, setWillDeliver]= useState(false)
+
+  const history = useHistory()
+
+  useEffect(() => {
+    const TOKEN = getToken();
+    if (TOKEN) {
+      setIsLoggedIn(true);
+    }
+  }, [])
  
   return (
-    <form className="newpost">
+    <form className="newpost" onSubmit={async (event) => {
+      event.preventDefault();
+      setIsLoading(true);
+
+      try {
+        const results = await createNewPost(title, description, price, location, willDeliver);
+        console.log(results);
+        setTitle("");
+        setDescription("");
+        setPrice("");
+        setLocation("");
+        setWillDeliver("");
+      
+        history.push("/posts")
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+        
+      }
+    }}>
       <h1 className="newpost-title"> Create New Post</h1>
-      <div className="imgcontainer"><i class="fas fa-pen-square fa-5x" style={{color:"rgb(200, 117, 7)"}}></i></div>
+      <div className="imgcontainer"><i className="fas fa-pen-square fa-5x" style={{color:"rgb(200, 117, 7)"}}></i></div>
       
       <div className="">
         <label htmlFor="title">Title</label>

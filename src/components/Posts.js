@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { NewPost } from "./NewPost"
+import { getPost} from "../api"
 
 import {useHistory} from 'react-router-dom'
 
@@ -7,22 +8,10 @@ export default function Posts(props) {
   const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn } = props;
   const history = useHistory()
 
-  const getPost = async function () {
-    try {
-      const response = await fetch(
-        "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT/posts"
-      );
-      const data = await response.json();
-      console.log(data.data.posts);
-      const posts = data.data.posts;
-      setDefaultPosts(posts);
-    } catch (error) {
-      console.log(error);
-    } finally {
-    }
-  };
-  useEffect(() => {
-    getPost();
+  
+  useEffect(async() => {
+    const posts = await getPost();
+    setDefaultPosts(posts)
   }, []);
 
   return (
