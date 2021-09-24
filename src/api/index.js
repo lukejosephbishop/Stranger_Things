@@ -110,7 +110,7 @@ export async function getPost() {
   }
 }
 
-export async function getMessages() {
+export async function personalInfo() {
   try {
     const response = await fetch(
       "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT/users/me",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { storeToken, getToken} from "../auth";
-import { getMessages} from "../api";
+import { personalInfo} from "../api";
 
 export default function Profile(props) {
 
@@ -8,11 +8,11 @@ export default function Profile(props) {
   const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn } = props;
   
   useEffect(async() => {
-    const MYMESSAGES = await getMessages();
+    const INFO = await personalInfo();
     
-  setMessages(MYMESSAGES.data.messages);
+  setMessages(INFO.data.messages);
 
-   console.log(MYMESSAGES)
+   console.log()
     const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);
@@ -46,3 +46,4 @@ export default function Profile(props) {
     </div>
   );
 }
+

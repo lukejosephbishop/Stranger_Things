@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPost, loginUser } from "../api";
+import { getPost, loginUser, personalInfo } from "../api";
 
 export default function EditPost(props) {
   const {
@@ -8,22 +8,23 @@ export default function EditPost(props) {
     setIsLoading,
     setIsLoggedIn,
     setDefaultPosts,
-   
   } = props;
+
+  const [personaldata, setPersonal] = useState([]);
+
   useEffect(async () => {
-    const posts = await getPost();
-    setDefaultPosts(posts);
+    
+    setIsLoggedIn(true);
+    const Info = await personalInfo();
+    setPersonal(Info.data.posts);
     
   }, []);
 
-//   const edit = defaultPosts.filter((posts) => {
-    
-//     return posts.author.username === 
-//   });
+
 
   return (
     <div className="post-page">
-      {edit.map((post, indx) => {
+      {personaldata.map((post, indx) => {
         const { title, description, price, location, author, isAuthor } = post;
         const { username } = author;
         return (
@@ -37,15 +38,23 @@ export default function EditPost(props) {
               <p className="price">{price}</p>
               <p>{location}</p>
             </div>
-            {(isLoggedIn === true) & (isAuthor === true) ? (
-              <>
+            
+              <div>
                 <button className="edit-button">Edit</button>
                 <button className="delete-button">Delete</button>
-              </>
-            ) : null}
+              </div>
+            
           </div>
         );
       })}
     </div>
   );
+}
+
+const Edit = () => {
+  return
+}
+
+const Delete = () => {
+  return
 }

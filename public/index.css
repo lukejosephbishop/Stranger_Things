@@ -9,6 +9,10 @@ body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif
 }
 
+.home-gif{
+  border: 1rem solid black
+}
+
 /*Post*/
 
 .post-page {
@@ -237,6 +241,52 @@ span.psw {
 .home-gif {
   width: 50%;
 }
+
+/*EDIT/DELETE*/
+
+
+.edit-button {background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA  51%, #1FA2FF  100%)}
+.edit-button {
+   
+   padding: 1rem 2rem;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 1rem #eee;
+   border: .2rem solid whitesmoke;
+ }
+
+ .edit-button:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   border: .2rem solid black;
+ }
+
+
+.delete-button {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+.delete-button {
+   
+   padding: 1rem 2rem;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 1rem #eee;
+   border: .2rem solid whitesmoke;
+   
+ }
+
+ .delete-button:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   border: .2rem solid black;
+ }
+
 
 /* Change styles for span and cancel button on extra small screens */
 
