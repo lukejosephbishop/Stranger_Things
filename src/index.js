@@ -9,6 +9,7 @@ import {
   Register,
   NewPost,
   EditPost,
+  EditMyPost,
 } from "./components";
 import {
   BrowserRouter as Router,
@@ -19,12 +20,11 @@ import {
 
 import { getToken } from "./auth";
 
-
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPosts, setDefaultPosts] = useState([]);
-  
+  const [postId, setPostId] = useState("");
 
   useEffect(() => {
     const TOKEN = getToken();
@@ -56,7 +56,6 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login
-            
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
@@ -72,9 +71,14 @@ const App = () => {
             setIsLoggedIn={setIsLoggedIn}
           />
         </Route>
+        <Route path="/edit/:id">
+          <EditMyPost postId={postId} setPostId={setPostId} />
+        </Route>
+
         <Route path="/editpost">
           <EditPost
-           
+            postId={postId}
+            setPostId={setPostId}
             setDefaultPosts={setDefaultPosts}
             defaultPosts={defaultPosts}
             isLoggedIn={isLoggedIn}

@@ -6,3 +6,5 @@ export {default as Register} from './Register'
 export {default as Navbar } from './NavbarFolder/Navbar'
 export {default as NewPost} from './NewPost'
 export {default as EditPost} from './EditPost'
+export {default as EditMyPost} from './EditMyPost'
+

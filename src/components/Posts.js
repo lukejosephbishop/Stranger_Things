@@ -20,13 +20,13 @@ export default function Posts(props) {
         <div className="post-actionbuttons">
           <button className="create-post" onClick={(event) => {
             event.preventDefault()
-           location.href="/newpost"
+           window.location.href="/newpost"
             
           }}> Create Post
           </button>
           <button className="edit-mypost" onClick={(event) => {
             event.preventDefault()
-           location.href="/editpost"
+           window.location.href="/editpost"
             
           }}> Edit my Posts</button>
         </div>

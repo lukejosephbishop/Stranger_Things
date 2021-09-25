@@ -58,8 +58,7 @@ export async function createNewPost(
   description,
   price,
   location,
-  willDeliver,
-  isAuthor
+  willDeliver
 ) {
   try {
     const response = await fetch(
@@ -68,7 +67,7 @@ export async function createNewPost(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Authorization': `Bearer ${TOKEN}`
+          Authorization: `Bearer ${TOKEN}`,
         },
         body: JSON.stringify({
           post: {
@@ -77,18 +76,16 @@ export async function createNewPost(
             price: price,
             location: location,
             willDeliver: willDeliver,
-            
-        
           },
         }),
       }
     )
       .then((response) => response.json())
       .then((result) => {
-        return(result);
+        return result;
       });
-      console.log(response)
-      return response
+    console.log(response);
+    return response;
   } catch (error) {
     console.log(error);
   }
@@ -131,3 +128,59 @@ export async function personalInfo() {
   } finally {
   }
 }
+
+export async function DELETE(_id) {
+  try {
+    const response = await fetch(
+      `https://strangers-things.herokuapp.com/api/${COHORT}/posts/${_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TOKEN}`,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        return result;
+      });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function Edit(title, description, price, location, willDeliver, postID) {
+  
+  try {
+    const response = fetch(
+      `${BASE}/api/${COHORT}}/posts/${postID}`,
+      {
+        method: "PATCH",
+        headers:{
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${TOKEN}`
+        },
+        body: JSON.stringify({
+          post: {
+            title: title,
+            description: description,
+            price: price,
+            location: location,
+            willDeliver: willDeliver
+          }
+        })
+      }).then((response) => response.json())
+      .then((result) => {
+        return result;
+      });
+    return response
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
