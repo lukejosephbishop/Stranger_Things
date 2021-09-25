@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { registerUser } from "../api";
-
+import { storeToken } from "../auth";
 export default function Register({setIsLoading, setIsLoggedIn}) {
 
   const [userName, setUserName] = useState('');
@@ -20,8 +20,8 @@ export default function Register({setIsLoading, setIsLoggedIn}) {
 
         try {
           const results = await registerUser(userName, password);
-          console.log(results);
-          storeToken(results.data.token);
+          console.log(results, "in register");
+          storeToken(results.token);
           setIsLoggedIn(true);
           setUserName("");
           setPassword("");

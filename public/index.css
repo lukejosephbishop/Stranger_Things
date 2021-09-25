@@ -1,3 +1,5 @@
+
+
 * {
   cursor: default;
   margin-left: 0%;
@@ -5,10 +7,8 @@
 }
 
 body {
-  
   background-color: #d2ecfa;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-  
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .home-gif {
@@ -18,8 +18,8 @@ body {
 /*Post*/
 
 .post-page {
-   margin-left: 2rem; 
-  margin-right: 2rem; 
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 .post-actionbuttons {
@@ -298,8 +298,6 @@ span.psw {
   align-items: center;
   justify-content: center;
 }
-
-
 
 /* Change styles for span and cancel button on extra small screens */
 

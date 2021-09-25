@@ -3,9 +3,9 @@ import { loginUser } from "../api";
 import { storeToken, getToken } from "../auth";
 import { useHistory, Link, Redirect } from "react-router-dom";
 
-export default function Login({ isLoggedIn, setIsLoading, setIsLoggedIn }) {
-
-  const [userName, setUserName] = useState("");
+export default function Login(props) {
+const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
+  
   const [password, setPassword] = useState("");
 
   const history = useHistory()
@@ -15,6 +15,7 @@ export default function Login({ isLoggedIn, setIsLoading, setIsLoggedIn }) {
     if (TOKEN) {
       setIsLoggedIn(true);
     }
+    
   }, []);
 
   if (isLoggedIn === false) {
@@ -27,10 +28,10 @@ export default function Login({ isLoggedIn, setIsLoading, setIsLoggedIn }) {
 
           try {
             const results = await loginUser(userName, password);
-            console.log(results);
+            console.log(results, "in login");
             storeToken(results.token);
             setIsLoggedIn(true);
-            setUserName("");
+            
             setPassword("");
           
             history.push("/posts")

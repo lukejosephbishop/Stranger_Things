@@ -97,7 +97,7 @@ export async function getPost() {
       "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT/posts"
     );
     const data = await response.json();
-    console.log(data.data.posts);
+    
     const posts = data.data.posts;
 
     return posts;
@@ -151,36 +151,81 @@ export async function DELETE(_id) {
     console.log(error);
   }
 }
+export async function edit(
+  title,
+  description,
+  price,
+  location,
+  willDeliver,
+  postID
+) {
+  const token = getToken();
+  console.log(token);
 
-export async function Edit(title, description, price, location, willDeliver, postID) {
-  
   try {
-    const response = fetch(
-      `${BASE}/api/${COHORT}}/posts/${postID}`,
+    const { data } = await axios.patch(
+      `${BASE}/api/${COHORT}/posts/${postID}`,
       {
-        method: "PATCH",
-        headers:{
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN}`
+        post: {
+          title,
+          description,
+          price,
+          location,
+          willDeliver,
         },
-        body: JSON.stringify({
-          post: {
-            title: title,
-            description: description,
-            price: price,
-            location: location,
-            willDeliver: willDeliver
-          }
-        })
-      }).then((response) => response.json())
-      .then((result) => {
-        return result;
-      });
-    return response
+      },
+      {
+        headers: {
+          "Content-Type": "application/JSON",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
   } catch (error) {
     console.log(error);
   }
 }
 
 
+export async function userData() {
+  try {
+    const response = fetch(`${BASE}/api/${COHORT}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        
+        return result;
+      });
+    return response;
+  } catch (error) {
+    consolelog(error);
+  }
+}
 
+export async function messages(content, postID){
+  try {
+    const response = fetch(`${BASE}/api/${COHORT}/posts/${postID}/messages`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${TOKEN}`
+  },
+  body: JSON.stringify({
+    message: {
+      content: `${content}`
+    }
+  })
+}).then(response => response.json())
+  .then(result => {
+    return(result);
+  })
+  return response
+  } catch (error) {
+    console.log(error)
+  }
+}

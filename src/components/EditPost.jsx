@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { DELETE, getPost, loginUser, personalInfo } from "../api";
+import { DELETE, getPost, loginUser, personalInfo, userData  } from "../api";
 import { useHistory, Link } from "react-router-dom";
-import { getToken } from "../auth";
+import { getToken} from "../auth";
 
 export default function EditPost(props) {
   const {
@@ -20,15 +20,21 @@ export default function EditPost(props) {
   const history = useHistory();
 
   useEffect(async () => {
+    
     setIsLoading(true);
-    const Info = await personalInfo();
-    setPersonal(Info.data.posts);
+    try {
+      const Info = await userData();
+    ("component", Info)
+
+    await setPersonal(Info.data.posts);
+    } catch (error) {
+      console.log(error)
+    }
+  
   }, []);
 
   return (
-    <div className="post-page">
-      {console.log(personaldata)}
-      {personaldata.map((post, indx) => {
+    <div className="post-page">{personaldata.map((post, indx) => {
         const {
           title,
           description,
@@ -61,7 +67,7 @@ export default function EditPost(props) {
               <Link to={`/edit/${_id}`}>
                 <button
                   className="edit-button" onClick={(event)=>{
-                    
+                   
                     setPostId(_id)
                   }}>
                   Edit

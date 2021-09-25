@@ -12,7 +12,7 @@ export default function Profile(props) {
     
   setMessages(INFO.data.messages);
 
-   console.log()
+   
     const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);

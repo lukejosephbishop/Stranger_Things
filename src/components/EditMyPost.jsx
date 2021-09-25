@@ -1,23 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { personalInfo, Edit } from "../api";
+import { personalInfo, edit, userData, messages } from "../api";
+import {getToken} from "../auth"
 
 export default function EditMyPost(props) {
-  const { postId, setPostId } = props;
+  const { postId, setPostId, setIsLoggedIn, isLoggedIn } = props;
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
   const [editLocation, setEditLocation] = useState("");
   const [editWillDeliver, setEditWillDeliver] = useState(false);
-
+  const[myToken, setMyToken] = useState("");
   const [personaldata, setPersonal] = useState([]);
+  
+
 
   useEffect(async () => {
-    const Info = await personalInfo();
+    const TOKEN = getToken()
+    if (TOKEN) {
+      setIsLoggedIn(true);
+      setMyToken(TOKEN);
+    }
+
+
+    const Info = await userData();
+   
     setPersonal(Info.data.posts);
   }, []);
 
   const post = personaldata.filter((elem) => elem._id === postId);
-
+  const { title, description, price, location, author, willDeliver,  isAuthor } = post
+  
   return (
     <>
       <div className="change-the-post">
@@ -29,18 +41,19 @@ export default function EditMyPost(props) {
           ></i>
         </div>
         {post.map((elem) => {
-          const { title, description, price, location, author, isAuthor } =
+          const { title, description, price, location, author, willDeliver,  isAuthor } =
             elem;
+            
 
           return (
             <div className="post" key={`post-${postId}`}>
               <div className="post-header">
-                <h1>{title}</h1>
+                <h1>{!editTitle? title: editTitle}</h1>
               </div>
               <div className="post-content">
-                <p>{description}</p>
-                <p className="price">{price}</p>
-                <p>{location}</p>
+                <p>{!editDescription ? description: editDescription}</p>
+                <p className="price">{!editPrice ? price : editPrice}</p>
+                <p>{!editLocation ? location : editLocation}</p>
               </div>
             </div>
           );
@@ -49,44 +62,51 @@ export default function EditMyPost(props) {
         <form
           className="newpost"
           onSubmit={async (event) => {
-            event.preventDefault();
-            console.log(postId)
+            
             try {
-              const results = await Edit(
+              const results = await edit(
                 editTitle,
                 editDescription,
                 editPrice,
                 editLocation,
                 editWillDeliver,
-                postId
+                postId, 
+                myToken
               );
-              console.log(results);
+             
               setEditTitle("");
               setEditDescription("");
               setEditPrice("");
               setEditLocation("");
               setEditWillDeliver("");
+              Swal.fire(
+                'Good job!',
+                'You clicked the button!',
+                'success'
+              )
             } catch (error) {
               console.log(error);
             } finally {
-            //   setIsLoading(false);
+                
+                
             }
           }}
         >
           <div className="edit-card">
-            <label htmlFor={editTitle}>Title</label>
+             
+            <label className="label" htmlFor={editTitle}>New title</label>
             <input
               type="text"
               name={editTitle}
               placeholder="title"
               value={editTitle}
               onChange={(event) => {
-                console.log(event.target.value);
+               
                 setEditTitle(event.target.value);
               }}
               required
             ></input>
-            <label htmlFor={editDescription}>Description</label>
+            <label htmlFor={editDescription}>New Description</label>
             <input
               type="text"
               name={editDescription}
@@ -97,7 +117,7 @@ export default function EditMyPost(props) {
               }}
               required
             ></input>
-            <label htmlFor={editPrice}>Price</label>
+            <label htmlFor={editPrice}>New Price</label>
             <input
               type="text"
               name={editPrice}
@@ -108,7 +128,7 @@ export default function EditMyPost(props) {
               }}
               required
             ></input>
-            <label htmlFor={editLocation}>Location</label>
+            <label htmlFor={editLocation}>New Location</label>
             <input
               type="text"
               name={editLocation}

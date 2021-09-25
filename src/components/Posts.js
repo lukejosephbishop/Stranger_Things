@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { NewPost } from "./NewPost"
 import { getPost} from "../api"
+import {Link} from "react-router-dom"
 
 import {useHistory} from 'react-router-dom'
 
 export default function Posts(props) {
-  const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn } = props;
+  const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn, userName } = props;
   const history = useHistory()
 
   
   useEffect(async() => {
+    setIsLoggedIn(true);
     const posts = await getPost();
     setDefaultPosts(posts)
   }, []);
@@ -34,6 +36,8 @@ export default function Posts(props) {
       {defaultPosts.map((post, indx) => {
         const { title, description, price, location, author, isAuthor } = post;
         const { username } = author;
+        
+        
         return (
           <div className="post" key={`post-${indx}`}>
             <div className="post-header">
@@ -45,11 +49,13 @@ export default function Posts(props) {
               <p className="price">{price}</p>
               <p>{location}</p>
             </div>
-            {(isLoggedIn === true) & (isAuthor === true) ? (
-              <>
-                <button className="edit-button">Edit</button>
-                <button className="delete-button">Delete</button>
-              </>
+            {userName != username ? (
+              <div>
+                <Link to={`/post/${username}`}><button className="send-message" onClick={(event)=>{
+                  
+                }}>Send Message</button></Link>
+
+              </div>
             ) : null}
           </div>
         );

@@ -10,6 +10,7 @@ import {
   NewPost,
   EditPost,
   EditMyPost,
+  SendMessage
 } from "./components";
 import {
   BrowserRouter as Router,
@@ -25,7 +26,7 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [defaultPosts, setDefaultPosts] = useState([]);
   const [postId, setPostId] = useState("");
-
+  const [userName, setUserName] = useState("");
   useEffect(() => {
     const TOKEN = getToken();
     if (TOKEN) {
@@ -39,11 +40,15 @@ const App = () => {
       <Switch>
         <Route path="/posts">
           <Posts
+            userName={userName}
             defaultPosts={defaultPosts}
             setDefaultPosts={setDefaultPosts}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
+        </Route>
+        <Route path="`/post/:username`">
+<SendMessage/>
         </Route>
         <Route path="/profile">
           <Profile
@@ -56,6 +61,8 @@ const App = () => {
         </Route>
         <Route path="/login">
           <Login
+            userName={userName}
+            setUserName={setUserName}
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
@@ -72,7 +79,12 @@ const App = () => {
           />
         </Route>
         <Route path="/edit/:id">
-          <EditMyPost postId={postId} setPostId={setPostId} />
+          <EditMyPost
+            postId={postId}
+            setPostId={setPostId}
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
         </Route>
 
         <Route path="/editpost">
