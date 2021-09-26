@@ -84,7 +84,7 @@ export async function createNewPost(
       .then((result) => {
         return result;
       });
-    console.log(response);
+    
     return response;
   } catch (error) {
     console.log(error);
@@ -97,7 +97,7 @@ export async function getPost() {
       "https://strangers-things.herokuapp.com/api/2106-CPU-RM-WEB-PT/posts"
     );
     const data = await response.json();
-    
+
     const posts = data.data.posts;
 
     return posts;
@@ -143,7 +143,7 @@ export async function DELETE(_id) {
     )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        
         return result;
       });
     return response;
@@ -160,7 +160,7 @@ export async function edit(
   postID
 ) {
   const token = getToken();
-  console.log(token);
+  
 
   try {
     const { data } = await axios.patch(
@@ -187,7 +187,6 @@ export async function edit(
   }
 }
 
-
 export async function userData() {
   try {
     const response = fetch(`${BASE}/api/${COHORT}/users/me`, {
@@ -198,7 +197,6 @@ export async function userData() {
     })
       .then((response) => response.json())
       .then((result) => {
-        
         return result;
       });
     return response;
@@ -207,25 +205,30 @@ export async function userData() {
   }
 }
 
-export async function messages(content, postID){
+export async function messages(content, postID) {
+ 
   try {
-    const response = fetch(`${BASE}/api/${COHORT}/posts/${postID}/messages`, {
-  method: "POST",
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${TOKEN}`
-  },
-  body: JSON.stringify({
-    message: {
-      content: `${content}`
-    }
-  })
-}).then(response => response.json())
-  .then(result => {
-    return(result);
-  })
-  return response
+    const response = await fetch(`${BASE}/api/${COHORT}/posts/${postID}/messages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${TOKEN}`,
+      },
+      body: JSON.stringify({
+        message: {
+          content: `${content}`,
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result)
+        return result;
+      });
+      console.log(response)
+    return response;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
+

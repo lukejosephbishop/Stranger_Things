@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { DELETE, getPost, loginUser, personalInfo, userData  } from "../api";
+import { DELETE, getPost, loginUser, personalInfo, userData } from "../api";
 import { useHistory, Link } from "react-router-dom";
-import { getToken} from "../auth";
+import { getToken } from "../auth";
 
 export default function EditPost(props) {
   const {
@@ -11,30 +11,28 @@ export default function EditPost(props) {
     setIsLoggedIn,
     setDefaultPosts,
     postId,
-    setPostId
+    setPostId,
   } = props;
 
-  
   const [personaldata, setPersonal] = useState([]);
 
   const history = useHistory();
 
   useEffect(async () => {
-    
     setIsLoading(true);
     try {
       const Info = await userData();
-    ("component", Info)
+      "component", Info;
 
-    await setPersonal(Info.data.posts);
+      await setPersonal(Info.data.posts);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  
   }, []);
 
   return (
-    <div className="post-page">{personaldata.map((post, indx) => {
+    <div className="post-page">
+      {personaldata.map((post, indx) => {
         const {
           title,
           description,
@@ -46,7 +44,7 @@ export default function EditPost(props) {
           active,
         } = post;
         const { username } = author;
-        
+
         if (!active) {
           return null;
         }
@@ -66,10 +64,12 @@ export default function EditPost(props) {
             <div>
               <Link to={`/edit/${_id}`}>
                 <button
-                  className="edit-button" onClick={(event)=>{
-                   
-                    setPostId(_id)
-                  }}>
+                  className="edit-button"
+                  onClick={(event) => {
+                    setPostId("")
+                    setPostId(_id);
+                  }}
+                >
                   Edit
                 </button>
               </Link>

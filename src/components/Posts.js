@@ -2,16 +2,16 @@ import React, { useEffect } from "react";
 import { NewPost } from "./NewPost"
 import { getPost} from "../api"
 import {Link} from "react-router-dom"
-
+import {storePostId} from "../auth"
 import {useHistory} from 'react-router-dom'
 
 export default function Posts(props) {
-  const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn, userName } = props;
+  const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn, userName, setPostId, postId } = props;
   const history = useHistory()
 
   
   useEffect(async() => {
-    setIsLoggedIn(true);
+    
     const posts = await getPost();
     setDefaultPosts(posts)
   }, []);
@@ -34,7 +34,9 @@ export default function Posts(props) {
         </div>
       ) : null}
       {defaultPosts.map((post, indx) => {
-        const { title, description, price, location, author, isAuthor } = post;
+        
+        const { title, description, price, location, author, isAuthor, _id } = post;
+        
         const { username } = author;
         
         
@@ -51,12 +53,13 @@ export default function Posts(props) {
             </div>
             {userName != username ? (
               <div>
-                <Link to={`/post/${username}`}><button className="send-message" onClick={(event)=>{
+                <Link to={`/posts/${username}`}><button className="submit-button" onClick={(event)=>{
                   
+                  storePostId(_id)
                 }}>Send Message</button></Link>
 
               </div>
-            ) : null}
+            ) : <h1>Your Post</h1>}
           </div>
         );
       })}

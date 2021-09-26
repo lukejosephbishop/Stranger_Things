@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { loginUser } from "../api";
-import { storeToken, getToken } from "../auth";
+import { storeToken, getToken, storeUserName, getUserName  } from "../auth";
 import { useHistory, Link, Redirect } from "react-router-dom";
 
 export default function Login(props) {
@@ -28,7 +28,7 @@ const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
 
           try {
             const results = await loginUser(userName, password);
-            console.log(results, "in login");
+            (results, "in login");
             storeToken(results.token);
             setIsLoggedIn(true);
             
@@ -63,6 +63,7 @@ const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
             value={userName}
             onChange={(event) => {
               setUserName(event.target.value);
+              storeUserName(event.target.value)
             }}
           />
           <label htmlFor="psw">

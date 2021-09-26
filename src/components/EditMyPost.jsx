@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { personalInfo, edit, userData, messages } from "../api";
-import {getToken} from "../auth"
+import { getToken } from "../auth";
+import { useHistory } from "react-router-dom";
 
 export default function EditMyPost(props) {
   const { postId, setPostId, setIsLoggedIn, isLoggedIn } = props;
@@ -9,31 +10,30 @@ export default function EditMyPost(props) {
   const [editPrice, setEditPrice] = useState("");
   const [editLocation, setEditLocation] = useState("");
   const [editWillDeliver, setEditWillDeliver] = useState(false);
-  const[myToken, setMyToken] = useState("");
+  const [myToken, setMyToken] = useState("");
   const [personaldata, setPersonal] = useState([]);
-  
 
-
+  const history = useHistory();
   useEffect(async () => {
-    const TOKEN = getToken()
+    const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);
       setMyToken(TOKEN);
     }
 
-
     const Info = await userData();
-   
+
     setPersonal(Info.data.posts);
   }, []);
 
   const post = personaldata.filter((elem) => elem._id === postId);
-  const { title, description, price, location, author, willDeliver,  isAuthor } = post
-  
+  const { title, description, price, location, author, willDeliver, isAuthor } =
+    post;
+
   return (
     <>
-      <div className="change-the-post">
-        <h1 className="newpost-title"> Edit</h1>
+      <div className="container-editpost">
+        <h1 className="login-title"> Edit</h1>
         <div className="imgcontainer">
           <i
             className="fas fa-pen-square fa-5x"
@@ -41,17 +41,23 @@ export default function EditMyPost(props) {
           ></i>
         </div>
         {post.map((elem) => {
-          const { title, description, price, location, author, willDeliver,  isAuthor } =
-            elem;
-            
+          const {
+            title,
+            description,
+            price,
+            location,
+            author,
+            willDeliver,
+            isAuthor,
+          } = elem;
 
           return (
-            <div className="post" key={`post-${postId}`}>
+            <div className="editmypost" key={`post-${postId}`}>
               <div className="post-header">
-                <h1>{!editTitle? title: editTitle}</h1>
+                <h1>{!editTitle ? title : editTitle}</h1>
               </div>
               <div className="post-content">
-                <p>{!editDescription ? description: editDescription}</p>
+                <p>{!editDescription ? description : editDescription}</p>
                 <p className="price">{!editPrice ? price : editPrice}</p>
                 <p>{!editLocation ? location : editLocation}</p>
               </div>
@@ -60,9 +66,9 @@ export default function EditMyPost(props) {
         })}
 
         <form
-          className="newpost"
+          className="login-form"
           onSubmit={async (event) => {
-            
+            event.preventDefault();
             try {
               const results = await edit(
                 editTitle,
@@ -70,38 +76,34 @@ export default function EditMyPost(props) {
                 editPrice,
                 editLocation,
                 editWillDeliver,
-                postId, 
+                postId,
                 myToken
               );
-             
+
               setEditTitle("");
               setEditDescription("");
               setEditPrice("");
               setEditLocation("");
               setEditWillDeliver("");
-              Swal.fire(
-                'Good job!',
-                'You clicked the button!',
-                'success'
-              )
+              alert("Saved Changes To Post!")
+              history.push("/editpost")
             } catch (error) {
               console.log(error);
             } finally {
-                
-                
+              
             }
           }}
         >
-          <div className="edit-card">
-             
-            <label className="label" htmlFor={editTitle}>New title</label>
+          <div className="login-container">
+            <label className="label" htmlFor={editTitle}>
+              New title
+            </label>
             <input
               type="text"
               name={editTitle}
               placeholder="title"
               value={editTitle}
               onChange={(event) => {
-               
                 setEditTitle(event.target.value);
               }}
               required
@@ -142,12 +144,15 @@ export default function EditMyPost(props) {
             <label className="checkbox">
               <input type="checkbox" name="delivery" /> Willing to Deliver
             </label>
-            <button className="submit-button" type="submit">
+            <button
+              className="submit-button"
+              type="submit"
+              
+            >
               Submit
             </button>
           </div>
         </form>
-        
       </div>
     </>
   );

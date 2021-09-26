@@ -84,6 +84,8 @@ body {
   font-size: .7rem;
   display: flex;
   flex-direction: column;
+  align-content: center;
+  justify-content: center;
   background-color: rgb(244, 235, 187);
   box-shadow: 0 0 1rem;
   padding-left: 2rem;
@@ -93,7 +95,7 @@ body {
   border-radius: .4em;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  width: 40%;
+  
 }
 
 .post .username {
@@ -125,16 +127,42 @@ body {
 
 /*NewPost*/
 
-.newpost {
-  display: block;
-  margin: auto;
-  width: 30%;
+.container-editpost{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+ 
 }
 
-.newpost-title {
-  margin-top: 3rem;
-  text-align: center;
+.editmypost{
+  font-size: .7rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: rgb(244, 235, 187);
+  box-shadow: 0 0 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  border-radius: .4em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 26.8rem;
+  margin-right: 26.8rem;
 }
+
+
+.editmypost p {
+  color: rgb(46, 46, 44);
+}
+
+.editmypost .price {
+  color: #04AA6D;
+  font-size: .8rem;
+}
+
 
 /* Login */
 
@@ -298,6 +326,10 @@ span.psw {
   align-items: center;
   justify-content: center;
 }
+
+
+/*ALERT*/
+
 
 /* Change styles for span and cancel button on extra small screens */
 

@@ -10,7 +10,7 @@ import {
   NewPost,
   EditPost,
   EditMyPost,
-  SendMessage
+  SendMessage,
 } from "./components";
 import {
   BrowserRouter as Router,
@@ -19,7 +19,7 @@ import {
   //Redirect,
 } from "react-router-dom";
 
-import { getToken } from "./auth";
+import { getToken} from "./auth";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,12 +34,24 @@ const App = () => {
     }
   }, []);
 
+  
+
   return (
     <div id="App">
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Switch>
+        <Route path="/posts/:username">
+          <SendMessage
+            defaultPosts={defaultPosts}
+            setDefaultPosts={setDefaultPosts}
+            postId={postId}
+            setPostId={setPostId}
+          />
+        </Route>
         <Route path="/posts">
           <Posts
+            setPostId={setPostId}
+            postId={postId}
             userName={userName}
             defaultPosts={defaultPosts}
             setDefaultPosts={setDefaultPosts}
@@ -47,11 +59,10 @@ const App = () => {
             setIsLoggedIn={setIsLoggedIn}
           />
         </Route>
-        <Route path="`/post/:username`">
-<SendMessage/>
-        </Route>
         <Route path="/profile">
           <Profile
+            userName={userName}
+            setUserName={setUserName}
             defaultPosts={defaultPosts}
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
@@ -78,15 +89,6 @@ const App = () => {
             setIsLoggedIn={setIsLoggedIn}
           />
         </Route>
-        <Route path="/edit/:id">
-          <EditMyPost
-            postId={postId}
-            setPostId={setPostId}
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-        </Route>
-
         <Route path="/editpost">
           <EditPost
             postId={postId}
@@ -95,6 +97,14 @@ const App = () => {
             defaultPosts={defaultPosts}
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        </Route>
+        <Route path="/edit/:id">
+          <EditMyPost
+            postId={postId}
+            setPostId={setPostId}
+            isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
           />
         </Route>

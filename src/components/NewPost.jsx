@@ -23,13 +23,13 @@ function NewPost({ setIsLoggedIn, isLoggedIn, setIsLoading }) {
 setIsAuthor(true)
       try {
         const results = await createNewPost(title, description, price, location, willDeliver, isAuthor);
-        console.log(results);
+        
         setTitle("");
         setDescription("");
         setPrice("");
         setLocation("");
         setWillDeliver("");
-      
+      alert("New Post Made!")
         history.push("/posts")
       } catch (error) {
         console.log(error);
