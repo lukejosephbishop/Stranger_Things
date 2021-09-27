@@ -1,0 +1,368 @@
+* {
+  cursor: default;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+
+body {
+  background-color: #d2ecfa;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+
+.home-gif {
+  border: 1rem solid black;
+}
+
+/*Post*/
+
+.post-page {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.post-actionbuttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.create-post {
+  background-image: linear-gradient(
+    to right,
+    #c21500 0%,
+    #ffc500 51%,
+    #c21500 100%
+  );
+}
+
+.create-post {
+  padding: 1rem 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  opacity: 80%;
+  box-shadow: 0 0 1rem #eee;
+  border: 0.2rem solid whitesmoke;
+  display: block;
+}
+
+.create-post:hover {
+  background-position: right;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  border: 0.2rem solid black;
+}
+
+.edit-mypost {
+  background-image: linear-gradient(
+    to right,
+    #314755 0%,
+    #26a0da 51%,
+    #314755 100%
+  );
+}
+
+.edit-mypost {
+  padding: 1rem 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  opacity: 80%;
+  background-size: 200% auto;
+  color: white;
+  border: 0.2rem solid whitesmoke;
+  box-shadow: 0 0 1rem #eee;
+  display: block;
+}
+
+.edit-mypost:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  border: 0.2rem solid black;
+  color: #fff;
+  text-decoration: none;
+}
+
+.post {
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: rgb(244, 235, 187);
+  box-shadow: 0 0 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.4em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.post .username {
+  color: rgb(200, 117, 7);
+}
+
+.post-header {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  color: rgb(0, 0, 0);
+}
+
+.post p {
+  color: rgb(46, 46, 44);
+}
+
+.post .price {
+  color: #04aa6d;
+  font-size: 0.8rem;
+}
+
+.post-content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/*NewPost*/
+
+.container-editpost {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.editmypost {
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  background-color: rgb(244, 235, 187);
+  box-shadow: 0 0 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.4em;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 26.8rem;
+  margin-right: 26.8rem;
+}
+
+.editmypost p {
+  color: rgb(46, 46, 44);
+}
+
+.editmypost .price {
+  color: #04aa6d;
+  font-size: 0.8rem;
+}
+
+/* Login */
+
+.login-form {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+.login-title {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.login-title span {
+  color: rgb(200, 117, 7);
+}
+
+.logout-button {
+  width: 3rem;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-image: linear-gradient(
+    to right,
+    #1d976c 0%,
+    #93f9b9 51%,
+    #1d976c 100%
+  );
+}
+
+.submit-button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 1rem #eee;
+  border: 0.2rem solid whitesmoke;
+  display: block;
+}
+
+.submit-button:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  border: 0.2rem solid black;
+}
+
+button {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.imgcontainer {
+  text-align: center;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.login-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox {
+  margin-bottom: 1rem;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+.home-page-text {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 18px;
+}
+
+.home-gif {
+  width: 50%;
+}
+
+/*EDIT/DELETE*/
+
+.edit-button {
+  background-image: linear-gradient(
+    to right,
+    #1fa2ff 0%,
+    #12d8fa 51%,
+    #1fa2ff 100%
+  );
+}
+
+.edit-button {
+  padding: 1rem 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 1rem #eee;
+  border: 0.2rem solid whitesmoke;
+}
+
+.edit-button:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  border: 0.2rem solid black;
+}
+
+.delete-button {
+  background-image: linear-gradient(
+    to right,
+    #d31027 0%,
+    #ea384d 51%,
+    #d31027 100%
+  );
+}
+
+.delete-button {
+  padding: 1rem 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 1rem #eee;
+  border: 0.2rem solid whitesmoke;
+}
+
+.delete-button:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  border: 0.2rem solid black;
+}
+
+.change-the-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar-main {
+  margin-top: 2rem;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: flex;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
