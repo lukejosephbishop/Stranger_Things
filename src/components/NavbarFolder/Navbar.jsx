@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "./Navbar.css";
 import { Redirect, Link, useHistory } from "react-router-dom";
-import { clearCurrentUser } from "../../auth";
+import { clearCurrentUser, clearPostId, clearUserName } from "../../auth";
 
 const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const history = useHistory();
@@ -45,6 +45,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
               if (course === true) {
                 event.preventDefault;
                 clearCurrentUser();
+                clearPostId();
+                clearUserName();
                 setIsLoggedIn(false);
               } 
             }}

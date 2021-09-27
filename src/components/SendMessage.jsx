@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { messages, getPost } from "../api";
-import { getToken, clearPostId, getPostId } from "../auth";
-import {useHistory} from "react-router-dom"
+import { messages } from "../api";
+import {  getPostId } from "../auth";
+import { useHistory } from "react-router-dom";
 
 export default function SendMessage(props) {
-  const { postId, setPostId, defaultPosts, setDefaultPosts } = props;
+  const { postId, defaultPosts} = props;
 
   const [personaldata, setPersonal] = useState([]);
   const [messageContent, setMessageContent] = useState("");
@@ -38,7 +38,7 @@ export default function SendMessage(props) {
         } catch (error) {
           console.log(error);
         } finally {
-        //   clearPostId();
+          //   clearPostId();
           history.push("/posts");
           alert("Message Sent!");
         }

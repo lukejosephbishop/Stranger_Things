@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { personalInfo, edit, userData, messages } from "../api";
+import { edit, userData } from "../api";
 import { getToken } from "../auth";
 import { useHistory } from "react-router-dom";
 
 export default function EditMyPost(props) {
-  const { postId, setPostId, setIsLoggedIn, isLoggedIn } = props;
+  const {
+    postId,
+    
+    setIsLoggedIn,
+    
+    delivery,
+    setDelivery,
+  } = props;
   const [editTitle, setEditTitle] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [editPrice, setEditPrice] = useState("");
   const [editLocation, setEditLocation] = useState("");
-  const [editWillDeliver, setEditWillDeliver] = useState(false);
+  
   const [myToken, setMyToken] = useState("");
   const [personaldata, setPersonal] = useState([]);
 
@@ -75,7 +82,7 @@ export default function EditMyPost(props) {
                 editDescription,
                 editPrice,
                 editLocation,
-                editWillDeliver,
+                delivery,
                 postId,
                 myToken
               );
@@ -84,13 +91,12 @@ export default function EditMyPost(props) {
               setEditDescription("");
               setEditPrice("");
               setEditLocation("");
-              setEditWillDeliver("");
-              alert("Saved Changes To Post!")
-              history.push("/editpost")
+              
+              alert("Saved Changes To Post!");
+              history.push("/editpost");
             } catch (error) {
               console.log(error);
             } finally {
-              
             }
           }}
         >
@@ -142,13 +148,29 @@ export default function EditMyPost(props) {
               required
             ></input>
             <label className="checkbox">
-              <input type="checkbox" name="delivery" /> Willing to Deliver
+              Willing to Deliver
+              <input
+                type="checkbox"
+                id="myCheck"
+                name="delivery"
+                value={true}
+                onChange={(event) => {
+                  setDelivery(true);
+                }}
+              />{" "}
+              Yes
+              <input
+                type="checkbox"
+                id="myCheck"
+                name="delivery"
+                value={false}
+                onChange={(event) => {
+                  setDelivery(false);
+                }}
+              />{" "}
+              No
             </label>
-            <button
-              className="submit-button"
-              type="submit"
-              
-            >
+            <button className="submit-button" type="submit">
               Submit
             </button>
           </div>

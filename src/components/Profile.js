@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { storeToken, getToken, getUserName } from "../auth";
+import { getToken, getUserName } from "../auth";
 import { personalInfo } from "../api";
 
 export default function Profile(props) {
   const [messages, setMessages] = useState([]);
-  const { defaultPosts, setDefaultPosts, isLoggedIn, setIsLoggedIn } = props;
+  const {  setIsLoggedIn } = props;
 
   const [localUser, setLocalUser] = useState("");
 
@@ -41,7 +41,6 @@ export default function Profile(props) {
         <h1>Inbox</h1>
         <div>
           {inboxArr.map((elem, indx) => {
-            
             const { post, fromUser, content } = elem;
             return (
               <div className="post" key={`sent-${indx}`}>
@@ -59,7 +58,7 @@ export default function Profile(props) {
         <h1>Sent</h1>
         <div>
           {sentArr.map((elem, indx) => {
-            console.log(elem)
+            console.log(elem);
             const { post, fromUser, content } = elem;
             return (
               <div className="post" key={`sent-${indx}`}>

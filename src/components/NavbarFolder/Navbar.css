@@ -1,79 +1,73 @@
 .NavbarMenu {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    background: #0F2027;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #2C5364, #203A43, #0F2027);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: right;
-    align-items: center;
-   justify-content: space-between;
-    color: rgb(179, 176, 176);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background: #0f2027;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2c5364, #203a43, #0f2027);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2c5364, #203a43, #0f2027);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: right;
+  align-items: center;
+  justify-content: space-between;
+  color: rgb(179, 176, 176);
   padding-right: 2rem;
   max-width: 100%;
-  
 }
 .NavbarMenu:hover {
-    cursor: default;
+  cursor: default;
 }
 .navbar-logo {
-text-decoration: none;
-color:rgb(200, 117, 7);
+  text-decoration: none;
+  color: rgb(200, 117, 7);
 }
 
 .navbar-logo h1:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-
-.fa-blender{
-    margin-right: 1rem;
+.fa-blender {
+  margin-right: 1rem;
 }
 
-.fa-space-shuttle{
-    margin-right: 1rem;
+.fa-space-shuttle {
+  margin-right: 1rem;
 }
 
-.fa-couch{
-    margin-right: 1rem;
+.fa-couch {
+  margin-right: 1rem;
 }
 
- .logo {
-    display: flex;
-    margin-left: 2rem;
-    justify-self: flex-start;
-    
+.logo {
+  display: flex;
+  margin-left: 2rem;
+  justify-self: flex-start;
 }
 
 .menu-icon {
-    justify-items: flex-end;
-    
+  justify-items: flex-end;
 }
 
 .nav-links {
-    margin-left: 1.5rem;
-    /* color: rgb(255, 255, 255); */
-    padding: .3rem;
-    border: 3px solid rgb(253, 253, 253);
-    background-color: rgb(179, 176, 176);
-    color: rgb(12, 76, 95);
-    
-    text-decoration: none;
+  margin-left: 1.5rem;
+  /* color: rgb(255, 255, 255); */
+  padding: 0.3rem;
+  border: 3px solid rgb(253, 253, 253);
+  background-color: rgb(179, 176, 176);
+  color: rgb(12, 76, 95);
+
+  text-decoration: none;
 }
 
 .nav-links:hover {
-    color:rgb(20, 113, 141);
-border: 3px solid black;
-cursor: grab;
+  color: rgb(20, 113, 141);
+  border: 3px solid black;
+  cursor: grab;
 }
-
 
 .nav-links:active {
-    color: rgb(12, 76, 95);
-border: 3px solid black;
-cursor: grabbing;
+  color: rgb(12, 76, 95);
+  border: 3px solid black;
+  cursor: grabbing;
 }
-

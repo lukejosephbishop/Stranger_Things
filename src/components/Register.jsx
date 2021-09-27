@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useEffect, useState } from "react";
+import {useHistory} from "react-router-dom"
 import { registerUser } from "../api";
-import { storeToken, storeUserName, getUserName  } from "../auth";
-export default function Register({setIsLoading, setIsLoggedIn}) {
-
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+import { storeToken} from "../auth";
+export default function Register({ setIsLoading, setIsLoggedIn }) {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   useEffect(() => {
-   registerUser();
+    
   }, []);
-
+  const history = useHistory();
   return (
     <form
       className="login-form"
@@ -20,11 +19,12 @@ export default function Register({setIsLoading, setIsLoggedIn}) {
 
         try {
           const results = await registerUser(userName, password);
-          
+
           storeToken(results.token);
           setIsLoggedIn(true);
           setUserName("");
           setPassword("");
+          history.push("/posts");
         } catch (error) {
           console.log(error);
         } finally {

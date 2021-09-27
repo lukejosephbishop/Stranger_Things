@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { loginUser } from "../api";
-import { storeToken, getToken, storeUserName, getUserName  } from "../auth";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { storeToken, getToken, storeUserName } from "../auth";
+import { useHistory } from "react-router-dom";
 
 export default function Login(props) {
-const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
-  
+  const { userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } =
+    props;
+
   const [password, setPassword] = useState("");
 
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);
     }
-    
   }, []);
 
   if (isLoggedIn === false) {
@@ -28,18 +28,18 @@ const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
 
           try {
             const results = await loginUser(userName, password);
-            (results, "in login");
+            results, "in login";
             storeToken(results.token);
+            storeUserName(userName);
             setIsLoggedIn(true);
-            
+
             setPassword("");
-          
-            history.push("/posts")
+
+            history.push("/posts");
           } catch (error) {
             console.log(error);
           } finally {
             setIsLoading(false);
-            
           }
         }}
       >
@@ -63,7 +63,7 @@ const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
             value={userName}
             onChange={(event) => {
               setUserName(event.target.value);
-              storeUserName(event.target.value)
+            
             }}
           />
           <label htmlFor="psw">
@@ -79,9 +79,9 @@ const {userName, setUserName, isLoggedIn, setIsLoading, setIsLoggedIn } = props
               setPassword(event.target.value);
             }}
           />
-          
-            <button className ="submit-button" type="submit">Login</button>
-          
+          <button className="submit-button" type="submit">
+            Login
+          </button>
           <label className="checkbox">
             <input type="checkbox" name="remember" /> Remember me
           </label>

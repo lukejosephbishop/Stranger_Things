@@ -11,15 +11,16 @@ import {
   EditPost,
   EditMyPost,
   SendMessage,
+  SearchPage,
 } from "./components";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  //Redirect,
+  
 } from "react-router-dom";
 
-import { getToken} from "./auth";
+import { getToken } from "./auth";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,14 +28,14 @@ const App = () => {
   const [defaultPosts, setDefaultPosts] = useState([]);
   const [postId, setPostId] = useState("");
   const [userName, setUserName] = useState("");
+  const [searchWord, setSearchWord] = useState("");
+  const [delivery, setDelivery] = useState(false);
   useEffect(() => {
     const TOKEN = getToken();
     if (TOKEN) {
       setIsLoggedIn(true);
     }
   }, []);
-
-  
 
   return (
     <div id="App">
@@ -50,6 +51,10 @@ const App = () => {
         </Route>
         <Route path="/posts">
           <Posts
+            delivery={delivery}
+            setDelivery={setDelivery}
+            searchWord={searchWord}
+            setSearchWord={setSearchWord}
             setPostId={setPostId}
             postId={postId}
             userName={userName}
@@ -57,6 +62,16 @@ const App = () => {
             setDefaultPosts={setDefaultPosts}
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
+            setSearchWord={setSearchWord}
+            searchWord={searchWord}
+          />
+        </Route>
+        <Route exact path="/searchpage">
+          <SearchPage
+            defaultPosts={defaultPosts}
+            searchWord={searchWord}
+            userName={userName}
+            isLoggedIn={isLoggedIn}
           />
         </Route>
         <Route path="/profile">
@@ -84,6 +99,8 @@ const App = () => {
         </Route>
         <Route path="/newpost">
           <NewPost
+            delivery={delivery}
+            setDelivery={setDelivery}
             isLoggedIn={isLoggedIn}
             setIsLoading={setIsLoading}
             setIsLoggedIn={setIsLoggedIn}
@@ -91,6 +108,8 @@ const App = () => {
         </Route>
         <Route path="/editpost">
           <EditPost
+           delivery={delivery}
+           setDelivery={setDelivery}
             postId={postId}
             setPostId={setPostId}
             setDefaultPosts={setDefaultPosts}
@@ -102,6 +121,8 @@ const App = () => {
         </Route>
         <Route path="/edit/:id">
           <EditMyPost
+          delivery={delivery}
+          setDelivery={setDelivery}
             postId={postId}
             setPostId={setPostId}
             isLoggedIn={isLoggedIn}

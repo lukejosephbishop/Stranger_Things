@@ -45,11 +45,21 @@ export async function registerUser(username, password) {
     })
       .then((response) => response.json())
       .then((result) => {
+        console.log(result)
+        const {success, error} = result
+        if (success === false) {
+         
+          return alert(error.message)
+        }
+        
+        
         return result.data;
       });
     return data;
   } catch (error) {
+   
     throw error;
+    
   }
 }
 
@@ -84,7 +94,7 @@ export async function createNewPost(
       .then((result) => {
         return result;
       });
-    
+
     return response;
   } catch (error) {
     console.log(error);
@@ -143,7 +153,6 @@ export async function DELETE(_id) {
     )
       .then((response) => response.json())
       .then((result) => {
-        
         return result;
       });
     return response;
@@ -160,7 +169,6 @@ export async function edit(
   postID
 ) {
   const token = getToken();
-  
 
   try {
     const { data } = await axios.patch(
@@ -206,29 +214,30 @@ export async function userData() {
 }
 
 export async function messages(content, postID) {
- 
   try {
-    const response = await fetch(`${BASE}/api/${COHORT}/posts/${postID}/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${TOKEN}`,
-      },
-      body: JSON.stringify({
-        message: {
-          content: `${content}`,
+    const response = await fetch(
+      `${BASE}/api/${COHORT}/posts/${postID}/messages`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${TOKEN}`,
         },
-      }),
-    })
+        body: JSON.stringify({
+          message: {
+            content: `${content}`,
+          },
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((result) => {
-        console.log(result)
+        console.log(result);
         return result;
       });
-      console.log(response)
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
   }
 }
-

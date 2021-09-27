@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { DELETE, getPost, loginUser, personalInfo, userData } from "../api";
+import { DELETE, personalInfo, userData } from "../api";
 import { useHistory, Link } from "react-router-dom";
-import { getToken } from "../auth";
 
 export default function EditPost(props) {
   const {
-    defaultPosts,
-    isLoggedIn,
     setIsLoading,
-    setIsLoggedIn,
-    setDefaultPosts,
-    postId,
+
     setPostId,
   } = props;
 
@@ -59,6 +54,7 @@ export default function EditPost(props) {
               <p>{description}</p>
               <p className="price">{price}</p>
               <p>{location}</p>
+              {willDeliver === true ? <p>Will Deliver</p> : null}
             </div>
 
             <div>
@@ -66,7 +62,7 @@ export default function EditPost(props) {
                 <button
                   className="edit-button"
                   onClick={(event) => {
-                    setPostId("")
+                    setPostId("");
                     setPostId(_id);
                   }}
                 >
